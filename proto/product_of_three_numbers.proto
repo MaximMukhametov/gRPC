@@ -1,0 +1,23 @@
+// to generate code use:
+// python:  python -m grpc_tools.protoc -I ./ --python_out=../python/proto/ --grpc_python_out=../python/proto/ ./product_of_three_numbers.proto
+// go:
+
+syntax = "proto3";
+
+package proto;
+
+// The Server service definition.
+service CalculateMultiplication {
+  // Sends a greeting
+  rpc Calculate (Request) returns (Response) {}
+}
+
+// The request message containing the array containing numbers separated by spaces.
+message Request {
+  string array = 1;
+}
+
+// The response message containing the greetings
+message Response {
+  string result = 1;
+}
