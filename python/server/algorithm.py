@@ -5,7 +5,7 @@ def maximum_product_of_tree_numbers(array: List[float]) -> float:
     """
     This function calculates the maximum
     product of three numbers in an array.
-    Time Complexity: O(n)
+    The algorithm works with time complexity O(n)
     """
     min1 = max(array)
     min2 = max(array)

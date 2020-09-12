@@ -14,7 +14,7 @@ def create_error_array_field_status(value):
                     field='array',
                     description="This field can contain only array containing "
                                 "numbers separated by spaces,"
-                                "like '1 6 3 4 5'")]))
+                                "like '1 6 3 -4 5'")]))
     return status_pb2.Status(
         code=code_pb2.INVALID_ARGUMENT,
         message=f"Unable to calculate the result from: {value}",

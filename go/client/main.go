@@ -19,12 +19,20 @@ const (
 	address = "localhost:50051"
 )
 
-func main() {
+func read_input() string {
+    // reads input data from stdin
+    fmt.Printf("Enter array containing numbers " +
+    "separated by spaces like '1 6 3 -4 5' \n")
     scanner := bufio.NewScanner(os.Stdin)
     scanner.Scan()
     if err := scanner.Err(); err != nil {
         fmt.Fprintln(os.Stderr, "reading standard input:", err)
     }
+    return scanner.Text()
+}
+
+func main() {
+    input_data := read_input()
 
 	// Set up a connection to the server.
 	conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithBlock())
@@ -38,7 +46,7 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
-	r, err := c.Calculate(ctx, &pb.Request{Array: scanner.Text()})
+	r, err := c.Calculate(ctx, &pb.Request{Array: input_data})
 	if err != nil {
 		s := status.Convert(err)
 		for _, d := range s.Details() {
