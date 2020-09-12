@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import product_of_three_numbers_pb2 as product__of__three__numbers__pb2
+import python.proto.product_of_three_numbers_pb2 as product__of__three__numbers__pb2
 
 
 class CalculateMultiplicationStub(object):

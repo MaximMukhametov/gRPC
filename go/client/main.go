@@ -9,23 +9,22 @@ import (
 	"bufio"
 
 	"google.golang.org/grpc"
+    "google.golang.org/grpc/status"
 	pb "../proto"
+	epb "google.golang.org/genproto/googleapis/rpc/errdetails"
+
 )
 
 const (
-	address     = "localhost:50051"
+	address = "localhost:50051"
 )
 
 func main() {
-    // read array of numbers from stdin
-    reader := bufio.NewReader(os.Stdin)
-    char, err := reader.ReadString('\n')
-    if err != nil {
-      fmt.Println(err)
+    scanner := bufio.NewScanner(os.Stdin)
+    scanner.Scan()
+    if err := scanner.Err(); err != nil {
+        fmt.Fprintln(os.Stderr, "reading standard input:", err)
     }
-
-    // print out the unicode value i.e. A -> 65, a -> 97
-    fmt.Println(char)
 
 	// Set up a connection to the server.
 	conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithBlock())
@@ -33,14 +32,24 @@ func main() {
 		log.Fatalf("did not connect: %v", err)
 	}
 	defer conn.Close()
-	c := pb.NewGreeterClient(conn)
+	c := pb.NewCalculateMultiplicationClient(conn)
 
 	// Contact the server and print out its response.
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
-	r, err := c.SayHello(ctx, &pb.HelloRequest{Name: char})
+
+	r, err := c.Calculate(ctx, &pb.Request{Array: scanner.Text()})
 	if err != nil {
-		log.Fatalf("could not greet: %v", err)
+		s := status.Convert(err)
+		for _, d := range s.Details() {
+			switch info := d.(type) {
+			case *epb.BadRequest:
+				log.Printf("Bad request: %s,\n %s", info, err)
+			default:
+				log.Printf("Error: %s,\n %s", info, err)
+			}
+		}
+		os.Exit(1)
 	}
-	log.Printf("Greeting: %s", r.GetMessage())
+	fmt.Printf("%.2f\n", r.GetResult())
 }
