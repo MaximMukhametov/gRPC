@@ -2,11 +2,12 @@ import logging
 from concurrent import futures
 
 import grpc
+from core import (maximum_product_of_tree_numbers,
+                  create_error_array_field_status)
 from grpc_status import rpc_status
 
 from proto import (CalculateMultiplicationServicer, Response,
-                               add_CalculateMultiplicationServicer_to_server)
-from core import maximum_product_of_tree_numbers, create_error_array_field_status
+                   add_CalculateMultiplicationServicer_to_server)
 
 
 class CalculateMultiplication(CalculateMultiplicationServicer):

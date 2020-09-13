@@ -17,9 +17,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='product_of_three_numbers.proto',
   package='proto',
   syntax='proto3',
-  serialized_options=b'Z\010go/proto',
+  serialized_options=b'Z\014golang/proto',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x1eproduct_of_three_numbers.proto\x12\x05proto\"\x18\n\x07Request\x12\r\n\x05\x61rray\x18\x01 \x01(\t\"\x1a\n\x08Response\x12\x0e\n\x06result\x18\x01 \x01(\x02\x32I\n\x17\x43\x61lculateMultiplication\x12.\n\tCalculate\x12\x0e.proto.Request\x1a\x0f.proto.Response\"\x00\x42\nZ\x08go/protob\x06proto3'
+  serialized_pb=b'\n\x1eproduct_of_three_numbers.proto\x12\x05proto\"\x18\n\x07Request\x12\r\n\x05\x61rray\x18\x01 \x01(\t\"\x1a\n\x08Response\x12\x0e\n\x06result\x18\x01 \x01(\x02\x32I\n\x17\x43\x61lculateMultiplication\x12.\n\tCalculate\x12\x0e.proto.Request\x1a\x0f.proto.Response\"\x00\x42\x0eZ\x0cgolang/protob\x06proto3'
 )
 
 
