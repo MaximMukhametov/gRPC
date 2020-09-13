@@ -32,10 +32,10 @@ class CalculateProductOfTriplet(CalculateProductOfTripletServicer):
 
 
 def serve(port):
-    """Creates a Server with which RPCs can be serviced."""
+    """Creates a server with which RPCs can be serviced."""
     server = grpc.server(futures.ThreadPoolExecutor())
     add_CalculateProductOfTripletServicer_to_server(CalculateProductOfTriplet(),
-                                                  server)
+                                                    server)
     server.add_insecure_port(f'[::]:{port}')
     server.start()
     server.wait_for_termination()
