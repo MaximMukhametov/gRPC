@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z\014golang/proto',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x1eproduct_of_three_numbers.proto\x12\x05proto\"\x18\n\x07Request\x12\r\n\x05\x61rray\x18\x01 \x01(\t\"\x1a\n\x08Response\x12\x0e\n\x06result\x18\x01 \x01(\x02\x32I\n\x17\x43\x61lculateMultiplication\x12.\n\tCalculate\x12\x0e.proto.Request\x1a\x0f.proto.Response\"\x00\x42\x0eZ\x0cgolang/protob\x06proto3'
+  serialized_pb=b'\n\x1eproduct_of_three_numbers.proto\x12\x05proto\"\x18\n\x07Request\x12\r\n\x05\x61rray\x18\x01 \x01(\t\"\x1a\n\x08Response\x12\x0e\n\x06result\x18\x01 \x01(\x02\x32U\n\x19\x43\x61lculateProductOfTriplet\x12\x38\n\x13\x43\x61lculateMaxTriplet\x12\x0e.proto.Request\x1a\x0f.proto.Response\"\x00\x42\x0eZ\x0cgolang/protob\x06proto3'
 )
 
 
@@ -109,19 +109,19 @@ _sym_db.RegisterMessage(Response)
 
 DESCRIPTOR._options = None
 
-_CALCULATEMULTIPLICATION = _descriptor.ServiceDescriptor(
-  name='CalculateMultiplication',
-  full_name='proto.CalculateMultiplication',
+_CALCULATEPRODUCTOFTRIPLET = _descriptor.ServiceDescriptor(
+  name='CalculateProductOfTriplet',
+  full_name='proto.CalculateProductOfTriplet',
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
   serialized_start=95,
-  serialized_end=168,
+  serialized_end=180,
   methods=[
   _descriptor.MethodDescriptor(
-    name='Calculate',
-    full_name='proto.CalculateMultiplication.Calculate',
+    name='CalculateMaxTriplet',
+    full_name='proto.CalculateProductOfTriplet.CalculateMaxTriplet',
     index=0,
     containing_service=None,
     input_type=_REQUEST,
@@ -130,8 +130,8 @@ _CALCULATEMULTIPLICATION = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
 ])
-_sym_db.RegisterServiceDescriptor(_CALCULATEMULTIPLICATION)
+_sym_db.RegisterServiceDescriptor(_CALCULATEPRODUCTOFTRIPLET)
 
-DESCRIPTOR.services_by_name['CalculateMultiplication'] = _CALCULATEMULTIPLICATION
+DESCRIPTOR.services_by_name['CalculateProductOfTriplet'] = _CALCULATEPRODUCTOFTRIPLET
 
 # @@protoc_insertion_point(module_scope)

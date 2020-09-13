@@ -5,7 +5,7 @@ import grpc
 from . import product_of_three_numbers_pb2 as product__of__three__numbers__pb2
 
 
-class CalculateMultiplicationStub(object):
+class CalculateProductOfTripletStub(object):
     """The Server service definition.
     """
 
@@ -15,18 +15,18 @@ class CalculateMultiplicationStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.Calculate = channel.unary_unary(
-                '/proto.CalculateMultiplication/Calculate',
+        self.CalculateMaxTriplet = channel.unary_unary(
+                '/proto.CalculateProductOfTriplet/CalculateMaxTriplet',
                 request_serializer=product__of__three__numbers__pb2.Request.SerializeToString,
                 response_deserializer=product__of__three__numbers__pb2.Response.FromString,
                 )
 
 
-class CalculateMultiplicationServicer(object):
+class CalculateProductOfTripletServicer(object):
     """The Server service definition.
     """
 
-    def Calculate(self, request, context):
+    def CalculateMaxTriplet(self, request, context):
         """Sends a greeting
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -34,26 +34,26 @@ class CalculateMultiplicationServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_CalculateMultiplicationServicer_to_server(servicer, server):
+def add_CalculateProductOfTripletServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'Calculate': grpc.unary_unary_rpc_method_handler(
-                    servicer.Calculate,
+            'CalculateMaxTriplet': grpc.unary_unary_rpc_method_handler(
+                    servicer.CalculateMaxTriplet,
                     request_deserializer=product__of__three__numbers__pb2.Request.FromString,
                     response_serializer=product__of__three__numbers__pb2.Response.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'proto.CalculateMultiplication', rpc_method_handlers)
+            'proto.CalculateProductOfTriplet', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class CalculateMultiplication(object):
+class CalculateProductOfTriplet(object):
     """The Server service definition.
     """
 
     @staticmethod
-    def Calculate(request,
+    def CalculateMaxTriplet(request,
             target,
             options=(),
             channel_credentials=None,
@@ -63,7 +63,7 @@ class CalculateMultiplication(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/proto.CalculateMultiplication/Calculate',
+        return grpc.experimental.unary_unary(request, target, '/proto.CalculateProductOfTriplet/CalculateMaxTriplet',
             product__of__three__numbers__pb2.Request.SerializeToString,
             product__of__three__numbers__pb2.Response.FromString,
             options, channel_credentials,

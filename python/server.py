@@ -1,18 +1,24 @@
-import logging
 from concurrent import futures
 
 import grpc
+from core import logging_of_called_rpc_functions
 from core import (maximum_product_of_tree_numbers,
                   create_error_array_field_status)
 from grpc_status import rpc_status
 
-from proto import (CalculateMultiplicationServicer, Response,
-                   add_CalculateMultiplicationServicer_to_server)
+from proto import (CalculateProductOfTripletServicer, Response,
+                   add_CalculateProductOfTripletServicer_to_server)
 
 
-class CalculateMultiplication(CalculateMultiplicationServicer):
+class CalculateProductOfTriplet(CalculateProductOfTripletServicer):
 
-    def Calculate(self, request, context):
+    @logging_of_called_rpc_functions
+    def CalculateMaxTriplet(self, request, context):
+        """
+        Calculate maximum product of three numbers in an array.
+        This function can be called by a grpc-client
+        written in any programming language.
+        """
         try:
             # Trying to convert a string of numbers to array
             # of numbers and calculate maximum product of triplet.
@@ -26,8 +32,9 @@ class CalculateMultiplication(CalculateMultiplicationServicer):
 
 
 def serve(port):
+    """Creates a Server with which RPCs can be serviced."""
     server = grpc.server(futures.ThreadPoolExecutor())
-    add_CalculateMultiplicationServicer_to_server(CalculateMultiplication(),
+    add_CalculateProductOfTripletServicer_to_server(CalculateProductOfTriplet(),
                                                   server)
     server.add_insecure_port(f'[::]:{port}')
     server.start()
@@ -36,8 +43,6 @@ def serve(port):
 
 if __name__ == '__main__':
     server_port = 50051
-    logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',
-                        level=logging.INFO)
-    logging.info(f"The server started listening "
-                 f"for rpc-requests on the port:{server_port} ")
+    print(f"The server started listening for "
+          f"rpc-requests on the port:{server_port} ")
     serve(server_port)

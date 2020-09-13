@@ -1,5 +1,10 @@
-// to generate the code, run the following commands from this directory:
-// python:  python -m grpc_tools.protoc -I ./ --python_out=../python/proto/ --grpc_python_out=../python/proto/ ./product_of_three_numbers.proto
+// To generate the code, run the following commands from this directory:
+/*
+python:  python -m grpc_tools.protoc -I ./ \
+--python_out=../python/proto/ --grpc_python_out=\
+../python/proto/ ./product_of_three_numbers.proto
+
+*/
 // go:  protoc --go_out=plugins=grpc:../ ./product_of_three_numbers.proto
 
 
@@ -10,9 +15,9 @@ option go_package = "golang/proto";
 package proto;
 
 // The Server service definition.
-service CalculateMultiplication {
+service CalculateProductOfTriplet {
   // Sends a greeting
-  rpc Calculate (Request) returns (Response) {}
+  rpc CalculateMaxTriplet (Request) returns (Response) {}
 }
 
 // The request message containing the array

@@ -40,24 +40,23 @@ func main() {
 		log.Fatalf("did not connect: %v", err)
 	}
 	defer conn.Close()
-	c := pb.NewCalculateMultiplicationClient(conn)
+	c := pb.NewCalculateProductOfTripletClient(conn)
 
 	// Contact the server and print out its response.
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
-	r, err := c.Calculate(ctx, &pb.Request{Array: input_data})
+	r, err := c.CalculateMaxTriplet(ctx, &pb.Request{Array: input_data})
 	if err != nil {
 		s := status.Convert(err)
 		for _, d := range s.Details() {
 			switch info := d.(type) {
 			case *epb.BadRequest:
-				log.Printf("Bad request: %s,\n %s", info, err)
+				log.Fatalf("Bad request: %s,\n %s", info, err)
 			default:
-				log.Printf("Error: %s,\n %s", info, err)
+				log.Fatalf("Unexpected failure: %s,\n %s", info, err)
 			}
 		}
-		os.Exit(1)
 	}
-	log.Printf("Call success: %.2f\n", r.GetResult())
+	log.Printf("Call success: %.2f", r.GetResult())
 }
