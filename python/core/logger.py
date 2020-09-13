@@ -11,7 +11,7 @@ def logging_of_called_rpc_functions(func):
     @wraps(func)
     def wrapper(obj, request, context):
         logging.info(f"Request by {context.peer()} "
-                     f"called function: '{func.__name__}', "
-                     f"with parameter: {request}".rstrip())
+                     f"called function - '{func.__name__}', "
+                     f"with arguments - {request}".rstrip())
         return func(obj, request, context)
     return wrapper
