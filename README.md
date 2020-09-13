@@ -4,9 +4,25 @@
 
 #### A small project of client-server communication between Go and Python code using the [gRPC](https://grpc.io/ "A high-performance, open source universal RPC framework") framework 
 
-To clone repository and create environments:
+To clone repository and create environments and start python grpc-server:
 ```bash
 git clone git@github.com:MaximMukhametov/gRPC.git \
 && cd gRPC && python3 -m venv venv && source venv/bin/activate \
-&& pip install -r python/requirements.txt
+&& pip install -r python/requirements.txt \
+&& python python/server.py
+```
+
+
+Then you can open another terminal in the same directory 
+(do not forget to activate the virtual environment)
+run the following commands:
+
+To run python client:
+```bash
+python python/client.py
+```
+
+To run golang client:
+```bash
+go run golang/client/main.go
 ```
