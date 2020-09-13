@@ -4,7 +4,7 @@
 
 #### A small project of client-server communication between Go and Python code using the [gRPC](https://grpc.io/ "A high-performance, open source universal RPC framework") framework 
 
-To clone repository and create environments and start python grpc-server:
+Enter the following command to clone repository and create environments and start python grpc-server :
 ```bash
 git clone git@github.com:MaximMukhametov/gRPC.git \
 && cd gRPC && python3 -m venv venv && source venv/bin/activate \
