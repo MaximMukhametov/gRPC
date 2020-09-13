@@ -12,9 +12,9 @@ def create_error_array_field_status(value):
             field_violations=[
                 error_details_pb2.BadRequest.FieldViolation(
                     field='array',
-                    description="This field can contain only array containing "
-                                "numbers separated by spaces,"
-                                "like '1 6 3 -4 5'")]))
+                    description="This field can contain only array "
+                                "containing at least 3 elements(int or float) "
+                                "separated by spaces, like `1 0 3.4 -4 5`")]))
     return status_pb2.Status(
         code=code_pb2.INVALID_ARGUMENT,
         message=f"Unable to calculate the result from: {value}",

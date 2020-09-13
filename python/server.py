@@ -4,23 +4,23 @@ from concurrent import futures
 import grpc
 from grpc_status import rpc_status
 
-from python.proto import (CalculateMultiplicationServicer,
-                          add_CalculateMultiplicationServicer_to_server,
-                          Response)
-from python.server.algorithm import maximum_product_of_tree_numbers
-from python.server.errors import create_error_array_field_status
+from proto import (CalculateMultiplicationServicer, Response,
+                               add_CalculateMultiplicationServicer_to_server)
+from core import maximum_product_of_tree_numbers, create_error_array_field_status
 
 
 class CalculateMultiplication(CalculateMultiplicationServicer):
 
     def Calculate(self, request, context):
         try:
-            # trying to convert a string of numbers to array of numbers
+            # Trying to convert a string of numbers to array
+            # of numbers and calculate maximum product of triplet.
             array_of_int = [float(item) for item in request.array.split()]
+            result = maximum_product_of_tree_numbers(array_of_int)
         except ValueError:
             error_status = create_error_array_field_status(request.array)
             context.abort_with_status(rpc_status.to_status(error_status))
-        result = maximum_product_of_tree_numbers(array_of_int)
+
         return Response(result=result)
 
 

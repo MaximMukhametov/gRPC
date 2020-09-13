@@ -20,13 +20,13 @@ const (
 )
 
 func read_input() string {
-    // reads input data from stdin
-    fmt.Printf("Enter array containing numbers " +
-    "separated by spaces like '1 6 3 -4 5' \n")
+    // Reads input data from stdin.
+    fmt.Printf("Enter array containing at least 3 elements " +
+    "separated by spaces like '1 0 3.4 -4 5' \n")
     scanner := bufio.NewScanner(os.Stdin)
     scanner.Scan()
     if err := scanner.Err(); err != nil {
-        fmt.Fprintln(os.Stderr, "reading standard input:", err)
+        log.Fatalf("Reading standard input:", err)
     }
     return scanner.Text()
 }
@@ -59,5 +59,5 @@ func main() {
 		}
 		os.Exit(1)
 	}
-	fmt.Printf("%.2f\n", r.GetResult())
+	log.Printf("Call success: %.2f\n", r.GetResult())
 }
