@@ -22,8 +22,8 @@ class CalculateProductOfTriplet(CalculateProductOfTripletServicer):
         try:
             # Trying to convert a string of numbers to array
             # of numbers and calculate maximum product of triplet.
-            array_of_int = [float(item) for item in request.array.split()]
-            result = maximum_product_of_tree_numbers(array_of_int)
+            array_of_numbers = [float(item) for item in request.array.split()]
+            result = maximum_product_of_tree_numbers(array_of_numbers)
         except ValueError:
             error_status = create_error_array_field_status(request.array)
             context.abort_with_status(rpc_status.to_status(error_status))
