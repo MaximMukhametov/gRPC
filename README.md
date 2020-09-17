@@ -24,5 +24,5 @@ python python/client.py
 
 To run golang client:
 ```bash
-go run golang/client/main.go
+./golang/client/bin/grpc_client
 ```
